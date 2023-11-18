@@ -1,7 +1,7 @@
 package com.rental.car_rent.controller;
 
 import com.rental.car_rent.DTO.DataResponse;
-import com.rental.car_rent.DTO.request.SaveCarRequest;
+import com.rental.car_rent.DTO.request.CarRequest;
 import com.rental.car_rent.DTO.request.UpdateCarRequest;
 import com.rental.car_rent.DTO.response.CarResponse;
 import com.rental.car_rent.services.CarService;
@@ -20,7 +20,7 @@ public class CarController {
     private CarService carService;
 
     @PostMapping
-    public ResponseEntity<?> saveCar(@RequestBody SaveCarRequest request){
+    public ResponseEntity<?> saveCar(@RequestBody CarRequest request){
         CarResponse carResponse = carService.createNew(request);
         DataResponse response = DataResponse.builder()
                 .message("Succsessfuly create Car")

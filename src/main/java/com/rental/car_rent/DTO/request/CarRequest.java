@@ -1,13 +1,10 @@
 package com.rental.car_rent.DTO.request;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
-public class UpdateCarRequest {
+public class CarRequest {
 
-    private String id_car;
     private String name;
 
     private String model;
@@ -19,4 +16,5 @@ public class UpdateCarRequest {
     private String color;
 
     private String bookingPrice;
+
 }
