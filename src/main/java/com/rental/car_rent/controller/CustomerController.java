@@ -54,7 +54,7 @@ public class CustomerController {
 
     @PutMapping({"id"})
     public ResponseEntity<?> updateCustomer(@RequestBody UpdateCustomerRequest request){
-        List<CustomerResponse> customerResponse = customerService.updateCustomer(request);
+        CustomerResponse customerResponse = customerService.updateCustomer(request);
         DataResponse response = DataResponse.builder()
                 .statusCode(HttpStatus.OK.value())
                 .message("Succsess Save Data Customer")

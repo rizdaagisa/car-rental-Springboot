@@ -10,6 +10,6 @@ public interface CustomerService {
     CustomerResponse createNew(CustomerRequest request);
     List<CustomerResponse> getall();
     CustomerResponse getByID(String id);
-    List<CustomerResponse> updateCustomer(UpdateCustomerRequest request);
+    CustomerResponse updateCustomer(UpdateCustomerRequest request);
     void deleteCustomer(String id);
 }
