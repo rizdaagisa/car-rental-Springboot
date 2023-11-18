@@ -13,8 +13,8 @@ public interface CarRepository extends JpaRepository<Car, String> {
     @Query(
             value = "SELECT * FROM Car c WHERE c.id = ?1",
             nativeQuery = true)
-    Car getUserById(Integer id);
+    Car getCarById(Integer id);
 
-    @Query(value = "SELECT * FROM Product p WHERE p.price > :#{#request.minPrice} AND p.price < :#{#request.maxPrice}", nativeQuery = true)
-    List<Car> findProductsInPriceRange(@Param("priceRange") UpdateCarRequest request);
+//    @Query(value = "SELECT * FROM Product p WHERE p.price > :#{#request.minPrice} AND p.price < :#{#request.maxPrice}", nativeQuery = true)
+//    List<Car> findProductsInPriceRange(@Param("priceRange") UpdateCarRequest request);
 }

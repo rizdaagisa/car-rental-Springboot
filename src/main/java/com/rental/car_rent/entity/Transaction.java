@@ -1,20 +1,20 @@
 package com.rental.car_rent.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "t_transaction")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class Transaction {
 
     @Id
@@ -22,15 +22,17 @@ public class Transaction {
     @GeneratedValue(generator = "uuid")
     private String id;
 
-    private String startDate;
+    private Date startDate;
 
-    private String endDate;
+    private Date endDate;
 
-    private String car_id;
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
 
-    private String customer_id;
-
-    private String dayCount;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     private String totalPrice;
 
