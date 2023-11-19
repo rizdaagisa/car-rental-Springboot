@@ -11,7 +11,7 @@ public interface CarService {
     CarResponse createNew(CarRequest request);
     List<CarResponse> getall();
     CarResponse getById(String id);
-    CarResponse updateCar(UpdateCarRequest id);
+    CarResponse updateCar(UpdateCarRequest request);
     void deleteCar(String id);
 
 }

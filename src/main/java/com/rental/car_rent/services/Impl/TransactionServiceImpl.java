@@ -18,7 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,10 +29,10 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionResponse saveTransaction(TransactionRequest request) {
-        Car car = carRepository.findById(request.getCar_id())
+        Car car = carRepository.getCarById(request.getCar_id())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_GATEWAY, "id Car not found"));
 
-        Customer customer = customerRepository.findById(request.getCustomer_id())
+        Customer customer = customerRepository.getCustomerById(request.getCustomer_id())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_GATEWAY, "id Customer not found"));
         try {
             Transaction transaction = Transaction.builder()
@@ -71,7 +70,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<TransactionResponse> getAll() {
         try {
-            List<Transaction> all = transactionRepository.findAll();
+            List<Transaction> all = transactionRepository.getTransactionAll();
             List<TransactionResponse> response = new ArrayList<>();
             all.forEach(transaction -> response.add(TransactionResponse.builder()
                     .startDate(transaction.getStartDate())
@@ -101,7 +100,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionResponse getById(String id) {
-        Transaction transaction = transactionRepository.findById(id)
+        Transaction transaction = transactionRepository.getTransactionById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_GATEWAY, "id Car not found"));
 
         try {

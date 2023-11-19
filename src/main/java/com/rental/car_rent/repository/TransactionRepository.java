@@ -7,13 +7,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface TransactionRepository extends JpaRepository<Transaction, String> {
 
     @Query(value = "SELECT t FROM Transaction t WHERE t.id = :transactionId", nativeQuery = true)
-    Transaction getTransactionById(String transactionId);
+    Optional<Transaction> getTransactionById(String transactionId);
 
     @Query(value = "SELECT t FROM Transaction t", nativeQuery = true)
-    Transaction getTransactionAll();
+    List<Transaction> getTransactionAll();
 
     @Query(value = "INSERT INTO transaction (start_date, end_date, total_price, car_id, customer_id)" +
             " VALUES (:#{#request.startDate}, :#{#request.endDate}, :#{#request.totalPrice}, :#{#request.car_id}, :#{#request.customer_id)" , nativeQuery = true)

@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<Car, String> {
 
-    @Query(
-            value = "SELECT * FROM Car c WHERE c.id = ?1",
-            nativeQuery = true)
-    Car getCarById(Integer id);
+    @Query(value = "SELECT * FROM Car c WHERE c.id = :id", nativeQuery = true)
+    Optional<Car> getCarById(String id);
 
-//    @Query(value = "SELECT * FROM Product p WHERE p.price > :#{#request.minPrice} AND p.price < :#{#request.maxPrice}", nativeQuery = true)
-//    List<Car> findProductsInPriceRange(@Param("priceRange") UpdateCarRequest request);
+    @Query(value = "SELECT * FROM car", nativeQuery = true)
+    List<Car> getAllCar();
+
 }

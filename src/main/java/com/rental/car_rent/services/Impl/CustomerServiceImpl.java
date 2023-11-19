@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerResponse> getall() {
         try {
-            List<Customer> all = customerRepository.findAll();
+            List<Customer> all = customerRepository.getAllCustomer();
             List<CustomerResponse> response= new ArrayList<>();
             all.forEach(customer -> response.add(
                     CustomerResponse.builder()
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponse getByID(String id) {
         try {
-            Customer customer = customerRepository.findById(id)
+            Customer customer = customerRepository.getCustomerById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_GATEWAY, "data tidak ditemukan"));
 
             return CustomerResponse.builder()

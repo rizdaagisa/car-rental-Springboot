@@ -48,7 +48,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarResponse> getall() {
         try {
-            List<Car> all = carRepository.findAll();
+            List<Car> all = carRepository.getAllCar();
             List<CarResponse> response= new ArrayList<>();
             all.forEach(car -> response.add(
                     CarResponse.builder()
@@ -69,7 +69,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarResponse getById(String id) {
         try {
-            Car car = carRepository.findById(id)
+            Car car = carRepository.getCarById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_GATEWAY, "data tidak ditemukan"));
 
             return CarResponse.builder()
